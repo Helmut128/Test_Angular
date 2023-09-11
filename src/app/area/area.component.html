@@ -1,0 +1,23 @@
+<dx-data-grid
+  [dataSource]="dataSource"
+  id="gridContainer"
+  [remoteOperations]="false"
+  [allowColumnReordering]="true"
+  [rowAlternationEnabled]="true"
+  [showBorders]="true"
+>
+  <dxo-search-panel
+    [visible]="true"
+    [highlightCaseSensitive]="true"
+  ></dxo-search-panel>
+
+  <dxi-column dataField="name"></dxi-column>
+
+  <dxi-column type="buttons">
+    <dxi-button type="success" name="Edit"> </dxi-button>
+  </dxi-column>
+
+  <dxi-column type="buttons">
+    <dxi-button type="trash" name="Delete"> </dxi-button>
+  </dxi-column>
+</dx-data-grid>

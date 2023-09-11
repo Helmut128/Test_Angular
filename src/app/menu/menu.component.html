@@ -1,0 +1,16 @@
+<dx-data-grid
+  [dataSource]="dataSource"
+  id="gridContainer"
+  [remoteOperations]="false"
+  [allowColumnReordering]="true"
+  [rowAlternationEnabled]="true"
+  [showBorders]="true"
+>
+  <dxo-search-panel
+    [visible]="true"
+    [highlightCaseSensitive]="true"
+  ></dxo-search-panel>
+
+  <dxi-column dataField="name"></dxi-column>
+  <dxi-column dataField="url"></dxi-column>
+</dx-data-grid>

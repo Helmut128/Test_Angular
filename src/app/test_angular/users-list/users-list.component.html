@@ -1,0 +1,21 @@
+<dx-data-grid
+  [dataSource]="dataSource"
+  id="gridContainer"
+  [remoteOperations]="false"
+  [allowColumnReordering]="true"
+  [rowAlternationEnabled]="true"
+  [showBorders]="true"
+>
+  <dxo-pager
+    [showPageSizeSelector]="true"
+    [allowedPageSizes]="[10, 25, 50, 100]"
+  ></dxo-pager>
+  <dxo-search-panel
+    [visible]="true"
+    [highlightCaseSensitive]="true"
+  ></dxo-search-panel>
+
+  <dxi-column dataField="name"></dxi-column>
+  <dxi-column dataField="alias"></dxi-column>
+  <dxi-column dataField="userName"></dxi-column>
+</dx-data-grid>
