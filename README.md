@@ -1,3 +1,7 @@
+BackEnd utilizado para este proyecto
+https://github.com/Helmut128/BackEnd_TestAngular
+
+
 Usando Angular con DevExtreme para realizar pruebas con una API creada con Node.JS y SQL 
 
 Primeramente un vistazo al proyecto 
