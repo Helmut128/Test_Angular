@@ -1,27 +1,32 @@
-# TestAngular
+Usando Angular con DevExtreme para realizar pruebas con una API creada con Node.JS y SQL 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+Primeramente un vistazo al proyecto 
 
-## Development server
+En primera instancia tenemos este menú:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/a04f2c82-215d-47c8-b2b3-49da33340688)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ahora cuando damos click en Language nos manda los datos que tenemos en la API y en la base de datos
 
-## Build
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/d35f619a-3747-4489-b77e-b5a3f765f098)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Asi mismo con la siguiente pestaña llamada Area
 
-## Running unit tests
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/de070dc4-5fbc-4611-8e37-6b6ac19bc1f9)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+La siguiente pestaña llamada Menu
 
-## Running end-to-end tests
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/1da0c28b-bf2e-4d9d-9499-e2181c7f41df)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Hasta el momentos es lo que tenemos
 
-## Further help
+-Lista de cosas que añadir:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1-Editar y eliminar datos en cada una de las pestañas
+
+2-Menú más formal
+
+3-Ingresar nuevos datos en cada una de las pestañas
+
+4-Mejorar el código junto con las buenas practicas aprendidas en cursos anteriores
