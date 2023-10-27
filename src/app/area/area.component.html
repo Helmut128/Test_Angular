@@ -5,6 +5,8 @@
   [allowColumnReordering]="true"
   [rowAlternationEnabled]="true"
   [showBorders]="true"
+  (onRowUpdating)="onRowUpdating($event)"
+  (onRowRemoving)="onRowRemoving($event)"
 >
   <dxo-search-panel
     [visible]="true"
@@ -12,12 +14,13 @@
   ></dxo-search-panel>
 
   <dxi-column dataField="name"></dxi-column>
+  <dxi-column dataField="idArea"></dxi-column>
 
+  <dxo-editing [allowUpdating]="true" [allowDeleting]="true"> </dxo-editing>
   <dxi-column type="buttons">
-    <dxi-button type="success" name="Edit"> </dxi-button>
+    <dxi-button name="edit"> </dxi-button>
   </dxi-column>
-
-  <dxi-column type="buttons">
-    <dxi-button type="trash" name="Delete"> </dxi-button>
+  <dxi-column type="buttons" [width]="110">
+    <dxi-button hint="Clone" icon="trash"></dxi-button>
   </dxi-column>
 </dx-data-grid>
