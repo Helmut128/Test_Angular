@@ -5,6 +5,7 @@
   [allowColumnReordering]="true"
   [rowAlternationEnabled]="true"
   [showBorders]="true"
+  keyExpr="idArea"
   (onRowUpdating)="onRowUpdating($event)"
   (onRowRemoving)="onRowRemoving($event)"
 >
@@ -17,10 +18,4 @@
   <dxi-column dataField="idArea"></dxi-column>
 
   <dxo-editing [allowUpdating]="true" [allowDeleting]="true"> </dxo-editing>
-  <dxi-column type="buttons">
-    <dxi-button name="edit"> </dxi-button>
-  </dxi-column>
-  <dxi-column type="buttons" [width]="110">
-    <dxi-button hint="Clone" icon="trash"></dxi-button>
-  </dxi-column>
 </dx-data-grid>

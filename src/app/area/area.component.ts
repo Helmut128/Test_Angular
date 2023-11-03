@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { DxDataGridModule } from 'devextreme-angular';
+import { Area } from '../interface/area';
 
 @Component({
   selector: 'app-area',
@@ -23,10 +24,31 @@ export class AreaComponent {
 
   onRowUpdating(event: any) {
     const updatedData = event; // Los datos editados
-    console.log(updatedData.idArea);
+    const rowKey = updatedData.key; // para obtener el id esta en su documentación -->  https://supportcenter.devexpress.com/ticket/details/t704618/datagrid-how-to-get-updated-data-onrowupdated-in-angular
+
+    console.log(updatedData);
+    if (updatedData !== null) {
+      const nuevosDatos = updatedData.newData;
+      const areaToUpdate: Area = { ...updatedData.oldData };
+
+      areaToUpdate.idArea = rowKey;
+      console.log(areaToUpdate);
+      areaToUpdate.name = nuevosDatos.name;
+
+      this.apiService.updateData(areaToUpdate).subscribe((response) => {
+        if (response.success) {
+          console.log('Se ha actualizado correctamente');
+        } else {
+          // Maneja el error
+        }
+      });
+      console.log(areaToUpdate);
+
+      // this.apiService.updateData()
+    }
 
     // Asegúrate de que updatedData contenga una propiedad 'id' válida
-    /*  if (updatedData && updatedData.id) {
+    /*if (updatedData && updatedData.id) {
       this.apiService.updateData(updatedData).subscribe((response) => {
         if (response.success) {
           event.cancel = true; // Cancela la actualización localmente
@@ -41,11 +63,11 @@ export class AreaComponent {
   }
 
   onRowRemoving(event: any) {
-    const removedData = event.data; // Datos del registro a eliminar
+    const rowKey = event.key;
     // Envía la solicitud de eliminación al servidor (a través de tu servicio ApiService)
-    this.apiService.deleteData(removedData.id).subscribe((response) => {
+    this.apiService.deleteData(rowKey).subscribe((response) => {
       if (response.success) {
-        // El registro se eliminó con éxito
+        console.log(`Se ha eliminado el registro con el ID ${rowKey}`);
       } else {
         // Maneja el error
       }

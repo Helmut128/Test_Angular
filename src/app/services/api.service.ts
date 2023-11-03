@@ -33,23 +33,14 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/menu`);
   }
 
-  // Método para actualizar un registro en la base de datos
-  updateData(updatedData: any): Observable<any> {
-    if (updatedData && updatedData.id) {
-      return this.http.put<any>(
-        `${this.apiUrl}/updateData/${updatedData.id}`,
-        updatedData
-      );
-    } else {
-      // Manejar el caso en el que updatedData no tenga un ID válido.
-      console.error('ID no válido', updatedData);
-      return throwError('ID no válido');
-    }
+  updateData(updateData: any): Observable<any> {
+    console.log(updateData);
+    return this.http.post<any>(`${this.apiUrl}/updateData/`, updateData);
   }
 
   // Método para eliminar un registro en la base de datos
-  deleteData(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/deleteData/${id}`);
+  deleteData(idArea: number): Observable<any> {
+    return this.http.delete<void>(`${this.apiUrl}/deleteData/${idArea}`);
     // En este ejemplo, se asume que en el servidor tienes una ruta '/deleteData/:id' para eliminar un registro.
   }
 }
