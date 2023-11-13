@@ -5,25 +5,39 @@
   [allowColumnReordering]="true"
   [rowAlternationEnabled]="true"
   [showBorders]="true"
+  keyExpr="idUser"
+  (onRowUpdating)="onRowUpdating($event)"
+  (onRowRemoving)="onRowRemoving($event)"
 >
-  <dxo-pager
-    [showPageSizeSelector]="true"
-    [allowedPageSizes]="[10, 25, 50, 100]"
-  ></dxo-pager>
   <dxo-search-panel
     [visible]="true"
     [highlightCaseSensitive]="true"
   ></dxo-search-panel>
 
   <dxi-column dataField="name"></dxi-column>
-  <dxi-column dataField="alias"></dxi-column>
   <dxi-column dataField="userName"></dxi-column>
 
-  <dxo-editing [allowUpdating]="true" [allowDeleting]="true"> </dxo-editing>
-  <dxi-column type="buttons">
-    <dxi-button name="edit"> </dxi-button>
-  </dxi-column>
-  <dxi-column type="buttons" [width]="110">
-    <dxi-button hint="Clone" icon="trash"></dxi-button>
-  </dxi-column>
+  <dxi-column dataField="idUser"></dxi-column>
+
+  <dxo-editing
+    [allowUpdating]="true"
+    [allowDeleting]="true"
+    [useIcons]="true"
+  ></dxo-editing>
 </dx-data-grid>
+
+<h2>AGREGAR USUARIOS</h2>
+<form (submit)="handleSubmit($event)">
+  <dx-form [formData]="addUserForm" [colCount]="2" [labelLocation]="'top'">
+    <dxi-item dataField="name">
+      <dx-text-box formControlName="name"></dx-text-box>
+    </dxi-item>
+    <dxi-item dataField="userName">
+      <dx-text-box formControlName="userName"></dx-text-box>
+    </dxi-item>
+
+    <dxi-item itemType="button" horizontalAlignment="left"> </dxi-item>
+    <dxi-item itemType="button" [buttonOptions]="submitButtonOptions">
+    </dxi-item>
+  </dx-form>
+</form>

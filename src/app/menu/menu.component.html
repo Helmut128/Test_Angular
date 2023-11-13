@@ -5,6 +5,9 @@
   [allowColumnReordering]="true"
   [rowAlternationEnabled]="true"
   [showBorders]="true"
+  keyExpr="idMenu"
+  (onRowUpdating)="onRowUpdating($event)"
+  (onRowRemoving)="onRowRemoving($event)"
 >
   <dxo-search-panel
     [visible]="true"
@@ -12,5 +15,9 @@
   ></dxo-search-panel>
 
   <dxi-column dataField="name"></dxi-column>
+  <dxi-column dataField="idMenu"></dxi-column>
   <dxi-column dataField="url"></dxi-column>
+
+  <dxo-editing [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+  </dxo-editing>
 </dx-data-grid>

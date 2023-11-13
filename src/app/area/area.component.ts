@@ -46,20 +46,6 @@ export class AreaComponent {
 
       // this.apiService.updateData()
     }
-
-    // Asegúrate de que updatedData contenga una propiedad 'id' válida
-    /*if (updatedData && updatedData.id) {
-      this.apiService.updateData(updatedData).subscribe((response) => {
-        if (response.success) {
-          event.cancel = true; // Cancela la actualización localmente
-        } else {
-          // Maneja el error
-        }
-      });
-    } else {
-      console.error('ID no válido', updatedData);
-      // Maneja el caso en el que updatedData no tenga un 'id' válido
-    }*/
   }
 
   onRowRemoving(event: any) {

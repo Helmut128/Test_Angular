@@ -5,12 +5,22 @@
   [allowColumnReordering]="true"
   [rowAlternationEnabled]="true"
   [showBorders]="true"
+  keyExpr="idLanguage"
+  (onRowUpdating)="onRowUpdating($event)"
+  (onRowRemoving)="onRowRemoving($event)"
 >
   <dxo-search-panel
     [visible]="true"
     [highlightCaseSensitive]="true"
   ></dxo-search-panel>
 
-  <dxi-column dataField="name"></dxi-column>
   <dxi-column dataField="code"></dxi-column>
+  <dxi-column dataField="name"></dxi-column>
+  <dxi-column dataField="idLanguage"></dxi-column>
+
+  <dxo-editing
+    [allowUpdating]="true"
+    [allowDeleting]="true"
+    [useIcons]="true"
+  ></dxo-editing>
 </dx-data-grid>

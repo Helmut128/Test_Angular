@@ -10,6 +10,8 @@ import {
   DxDataGridModule,
   DxBulletModule,
   DxTemplateModule,
+  DxFormModule,
+  DxTextBoxModule,
 } from 'devextreme-angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +22,13 @@ import { AreaComponent } from './area/area.component';
 import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
-  declarations: [AppComponent, UsersListComponent, LanguageListComponent, AreaComponent, MenuComponent],
+  declarations: [
+    AppComponent,
+    UsersListComponent,
+    LanguageListComponent,
+    AreaComponent,
+    MenuComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +38,8 @@ import { MenuComponent } from './menu/menu.component';
     DxTemplateModule,
     HttpClientModule,
     RouterModule,
+    DxFormModule,
+    DxTextBoxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

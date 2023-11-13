@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Menu } from '../interface/menu';
 
 @Component({
   selector: 'app-menu',
@@ -16,6 +17,44 @@ export class MenuComponent {
       // this.users = users;
       this.dataSource = data;
       console.log(data);
+    });
+  }
+
+  onRowUpdating(event: any) {
+    const updateDataMenu = event; // Los datos editados
+    const rowKey = updateDataMenu.key;
+
+    console.log(updateDataMenu);
+    if (updateDataMenu !== null) {
+      const nuevosDatos = updateDataMenu.newData;
+      const menuToUpdate: Menu = { ...updateDataMenu.oldData };
+
+      menuToUpdate.idMenu = rowKey;
+      console.log(menuToUpdate);
+      menuToUpdate.name = nuevosDatos.name;
+
+      this.apiService.updateDataMenu(menuToUpdate).subscribe((response) => {
+        if (response.success) {
+          console.log('Se ha actualizado correctamente');
+        } else {
+          // Maneja el error
+        }
+      });
+      console.log(menuToUpdate);
+
+      // this.apiService.updateData()
+    }
+  }
+
+  onRowRemoving(event: any) {
+    const rowKey = event.key;
+    // Envía la solicitud de eliminación al servidor (a través de tu servicio ApiService)
+    this.apiService.deleteDataMenu(rowKey).subscribe((response) => {
+      if (response.success) {
+        console.log(`Se ha eliminado el registro con el ID ${rowKey}`);
+      } else {
+        // Maneja el error
+      }
     });
   }
 }
