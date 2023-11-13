@@ -23,6 +23,20 @@ La siguiente pestaña llamada Menu
 
 ![image](https://github.com/Helmut128/Test_Angular/assets/65142656/1da0c28b-bf2e-4d9d-9499-e2181c7f41df)
 
+Actualizado NOVIEMBRE 3
+
+Editar: 
+
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/8b9d1703-d363-42f6-bde3-ce7f22bcfba4)
+
+EDITADO: 
+
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/e92d4d55-d505-40e9-88d7-6fa6751499b8)
+
+Eliminar: 
+
+Elimina pero eso despues lo subo XD
+
 Hasta el momentos es lo que tenemos
 
 -Lista de cosas que añadir:
