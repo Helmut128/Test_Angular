@@ -37,6 +37,10 @@ Eliminar:
 
 Elimina pero eso despues lo subo XD
 
+![image](https://github.com/Helmut128/Test_Angular/assets/65142656/e5daa289-5e96-41b6-b7ea-b2077cd28767)
+
+
+
 Hasta el momentos es lo que tenemos
 
 -Lista de cosas que añadir:
