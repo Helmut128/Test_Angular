@@ -1,4 +1,9 @@
 export interface Area {
-    name: string,
-    idArea: number
+  success: any;
+  name: string;
+  idArea: number;
+}
+export interface ApiResponse {
+  success: boolean;
+  // Puedes agregar más propiedades según sea necesario
 }

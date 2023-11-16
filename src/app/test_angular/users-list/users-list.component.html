@@ -35,9 +35,8 @@
     <dxi-item dataField="userName">
       <dx-text-box formControlName="userName"></dx-text-box>
     </dxi-item>
-
-    <dxi-item itemType="button" horizontalAlignment="left"> </dxi-item>
-    <dxi-item itemType="button" [buttonOptions]="submitButtonOptions">
-    </dxi-item>
   </dx-form>
+  <!-- Botón de Envío del Formulario -->
+
+  <dx-button type="submit" text="Submit" [useSubmitBehavior]="true"></dx-button>
 </form>

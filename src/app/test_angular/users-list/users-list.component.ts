@@ -31,6 +31,10 @@ export class UsersListComponent implements OnInit {
     });
   }
 
+  addProduct() {
+    console.log(this.addProduct);
+  }
+
   onRowUpdating(event: any) {
     const updateDataUser = event; // Los datos editados
     const rowKey = updateDataUser.key;
@@ -52,8 +56,6 @@ export class UsersListComponent implements OnInit {
         }
       });
       console.log(usersToUpdate);
-
-      // this.apiService.updateData()
     }
   }
 
@@ -95,7 +97,9 @@ export class UsersListComponent implements OnInit {
   addUser() {
     // Verifica si el formulario es válido antes de intentar agregar el usuario
     if (this.addUserForm.valid) {
-      console.log(this.addUserForm);
+      console.log(this.addUserForm.value.name);
+
+      console.log(this.addUserForm.value.userName);
 
       const newUserName: userName = {
         name: this.addUserForm.value.name,
@@ -104,21 +108,21 @@ export class UsersListComponent implements OnInit {
       console.log(this.addUserForm);
 
       console.log(newUserName);
-      //  const newUser = this.addUserForm.value;
-      // this.apiService.addUser(newUser).subscribe((response) => {
-      //   if (response.idUser) {
-      //     console.log('Se ha agregado un nuevo usuario correctamente');
-      //     // Recargar la lista de usuarios después de agregar uno nuevo
-      //     this.apiService.getUsers().subscribe((data: any[]) => {
-      //       this.dataSource = data;
-      //     });
+      const newUser = this.addUserForm.value;
+      this.apiService.addUser(newUser).subscribe((response) => {
+        if (response.idUser) {
+          console.log('Se ha agregado un nuevo usuario correctamente');
+          // Recargar la lista de usuarios después de agregar uno nuevo
+          this.apiService.getUsers().subscribe((data: any[]) => {
+            this.dataSource = data;
+          });
 
-      //     // Restablecer el formulario después de agregar el usuario
-      //     this.addUserForm.reset();
-      //   } else {
-      //     // Manejar errores
-      //   }
-      // });
+          // Restablecer el formulario después de agregar el usuario
+          this.addUserForm.reset();
+        } else {
+          // Manejar errores
+        }
+      });
     }
   }
 }

@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from '../enviroments/environments';
 import { userName } from '../interface/username';
 import { users } from '../interface/users';
+import { Area } from '../interface/area';
 
 @Injectable({
   providedIn: 'root',
@@ -91,7 +92,12 @@ export class ApiService {
   }
 
   // Agregar un nuevo producto
-  addUser(userName: users): Observable<users> {
+  addUser(userName: userName): Observable<users> {
     return this.http.post<users>(`${this.apiUrl}/addUser`, userName);
+  }
+
+  // Agregar un nuevo área
+  addArea(newArea: Area): Observable<Area> {
+    return this.http.post<Area>(`${this.apiUrl}/addArea`, newArea);
   }
 }

@@ -6,10 +6,10 @@ import { AreaComponent } from './area/area.component';
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  { path: 'user-list', component: UsersListComponent },
-  { path: 'language', component: LanguageListComponent },
-  { path: 'area', component: AreaComponent },
-  { path: 'menu', component: MenuComponent },
+  { path: 'user-list', title: 'UserList', component: UsersListComponent },
+  { path: 'language', title: 'Language', component: LanguageListComponent },
+  { path: 'area', title: 'Area', component: AreaComponent },
+  { path: 'menu', title: 'Menu', component: MenuComponent },
 ];
 
 @NgModule({
