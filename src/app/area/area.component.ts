@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { DxDataGridModule } from 'devextreme-angular';
 import { Area } from '../interface/area';
+import { addArea } from '../interface/addArea';
 
 @Component({
   selector: 'app-area',
@@ -11,12 +11,36 @@ import { Area } from '../interface/area';
 export class AreaComponent {
   dataSource: any;
 
-  constructor(private apiService: ApiService) {}
+  area: addArea;
+
+  form_fieldDataChanged(e: {
+    component: { option: (formData: string) => addArea };
+  }) {
+    this.area = e.component.option('formData');
+    this.apiService.addArea(this.area).subscribe(() => {});
+    console.log(this.area);
+    this.getList();
+  }
+
+  buttonOptions: any = {
+    Text: 'Agregar',
+    type: 'success',
+    useSubmitBehavior: true,
+  };
+
+  constructor(private apiService: ApiService) {
+    this.area = {
+      name: '',
+    };
+  }
 
   //Consume el api.services.ts para darnos los datos de getArea
   ngOnInit(): void {
+    this.getList();
+  }
+
+  getList() {
     this.apiService.getArea().subscribe((data: any[]) => {
-      // this.users = users;
       this.dataSource = data;
       console.log(data);
     });
@@ -39,7 +63,7 @@ export class AreaComponent {
         if (response.success) {
           console.log('Se ha actualizado correctamente');
         } else {
-          // Maneja el error
+          this.getList();
         }
       });
       console.log(areaToUpdate);
@@ -59,4 +83,14 @@ export class AreaComponent {
       }
     });
   }
+
+  //Agregar Area
+  handleSubmit = function (e: { preventDefault: () => void }) {
+    console.log('Hace el submit');
+    e.preventDefault();
+    //this.updateProduct(this.id, product).subscribe(() => {
+
+    //  }
+    //)
+  };
 }

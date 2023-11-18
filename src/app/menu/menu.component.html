@@ -15,9 +15,36 @@
   ></dxo-search-panel>
 
   <dxi-column dataField="name"></dxi-column>
-  <dxi-column dataField="idMenu"></dxi-column>
   <dxi-column dataField="url"></dxi-column>
+  <dxi-column dataField="idMenu"></dxi-column>
 
   <dxo-editing [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
   </dxo-editing>
 </dx-data-grid>
+
+<br />
+<form (submit)="handleSubmit($event)">
+  <dx-form
+    [formData]="menu"
+    [colCount]="2"
+    (onFieldDataChanged)="form_fieldDataChanged($event)"
+  >
+    <dxi-item itemType="group" caption="Add Area From" [colCount]="2">
+      <dxi-item
+        dataField="name"
+        [isRequired]="true"
+        editorType="dxTextBox"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="url"
+        [isRequired]="true"
+        editorType="dxTextBox"
+      ></dxi-item>
+
+      <!-- Agrega más campos según sea necesario -->
+    </dxi-item>
+    <dxi-item itemType="button" [buttonOptions]="form_fieldDataChanged">
+    </dxi-item>
+  </dx-form>
+</form>

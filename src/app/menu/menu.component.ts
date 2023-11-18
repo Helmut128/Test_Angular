@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Menu } from '../interface/menu';
+import { addMenu } from '../interface/addMenu';
 
 @Component({
   selector: 'app-menu',
@@ -10,14 +11,49 @@ import { Menu } from '../interface/menu';
 export class MenuComponent {
   dataSource: any;
 
-  constructor(private apiService: ApiService) {}
+  menu: addMenu;
 
-  ngOnInit(): void {
+  form_fieldDataChanged(e: {
+    component: { option: (formData: string) => addMenu };
+  }) {
+    this.menu = e.component.option('formData');
+    if (this.menu.url === '') {
+      console.log('Este campo es requerido');
+      return;
+    }
+
+    if (this.menu.name === '') {
+      console.log('Este campo es requerido');
+      return;
+    }
+
+    this.apiService.addMenu(this.menu).subscribe(() => {});
+    console.log(this.menu);
+    this.getList();
+  }
+
+  buttonOptions: any = {
+    Text: 'Agregar',
+    type: 'success',
+    useSubmitBehavior: true,
+  };
+
+  getList() {
     this.apiService.getMenu().subscribe((data: any[]) => {
-      // this.users = users;
       this.dataSource = data;
       console.log(data);
     });
+  }
+
+  constructor(private apiService: ApiService) {
+    this.menu = {
+      name: '',
+      url: '',
+    };
+  }
+  //Consume el api.services.ts para darnos los datos de getArea
+  ngOnInit(): void {
+    this.getList();
   }
 
   onRowUpdating(event: any) {
@@ -57,4 +93,14 @@ export class MenuComponent {
       }
     });
   }
+
+  //Agregar Menu
+  handleSubmit = function (e: { preventDefault: () => void }) {
+    console.log('Hace el submit');
+    e.preventDefault();
+    //this.updateProduct(this.id, product).subscribe(() => {
+
+    //  }
+    //)
+  };
 }

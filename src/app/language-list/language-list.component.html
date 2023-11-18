@@ -24,3 +24,29 @@
     [useIcons]="true"
   ></dxo-editing>
 </dx-data-grid>
+
+<form (submit)="handleSubmit($event)">
+  <dx-form
+    [formData]="language"
+    [colCount]="2"
+    (onFieldDataChanged)="form_fieldDataChanged($event)"
+  >
+    <dxi-item itemType="group" caption="Add Area From" [colCount]="2">
+      <dxi-item
+        dataField="code"
+        [isRequired]="true"
+        editorType="dxTextBox"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="name"
+        [isRequired]="true"
+        editorType="dxTextBox"
+      ></dxi-item>
+
+      <!-- Agrega más campos según sea necesario -->
+    </dxi-item>
+    <dxi-item itemType="button" [buttonOptions]="form_fieldDataChanged">
+    </dxi-item>
+  </dx-form>
+</form>

@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { environment } from '../enviroments/environments';
-import { userName } from '../interface/username';
-import { users } from '../interface/users';
 import { Area } from '../interface/area';
+import { addArea } from '../interface/addArea';
+import { addLanguage } from '../interface/addLanguague';
+import { language } from '../interface/languague';
+import { addMenu } from '../interface/addMenu';
+import { addUser } from '../interface/addUser';
 
 @Injectable({
   providedIn: 'root',
@@ -91,13 +94,28 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/deleteDataUser/${idUser}`);
   }
 
-  // Agregar un nuevo producto
-  addUser(userName: userName): Observable<users> {
-    return this.http.post<users>(`${this.apiUrl}/addUser`, userName);
+  // Agregar un nuevo área
+  addArea(areaData: addArea): Observable<addArea> {
+    console.log(areaData);
+    return this.http.post<Area>(`${this.apiUrl}/areas`, areaData);
   }
 
-  // Agregar un nuevo área
-  addArea(newArea: Area): Observable<Area> {
-    return this.http.post<Area>(`${this.apiUrl}/addArea`, newArea);
+  addLanguage(updateDataLanguage: addLanguage): Observable<addLanguage> {
+    return this.http.post<addLanguage>(
+      `${this.apiUrl}/addLanguague`,
+      updateDataLanguage
+    );
+  }
+
+  addMenu(updateDataMenu: addMenu): Observable<addLanguage> {
+    return this.http.post<addLanguage>(
+      `${this.apiUrl}/addMenu`,
+      updateDataMenu
+    );
+  }
+
+  //agregar nuevo usuario
+  addUser(updateDataUser: addUser): Observable<addUser> {
+    return this.http.post<addUser>(`${this.apiUrl}/addUser`, updateDataUser);
   }
 }

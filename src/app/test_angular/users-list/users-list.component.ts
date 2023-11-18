@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { users } from 'src/app/interface/users';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { userName } from 'src/app/interface/username';
+
+import { addUser } from 'src/app/interface/addUser';
 
 @Component({
   selector: 'app-users-list',
@@ -13,26 +13,49 @@ export class UsersListComponent implements OnInit {
   users: any[] = [];
   dataSource: any;
 
-  // Define un formulario reactivo para recoger los datos del nuevo usuario
-  addUserForm: FormGroup;
+  user: addUser;
 
-  constructor(private apiService: ApiService, private fb: FormBuilder) {
-    this.addUserForm = this.fb.group({
-      name: ['', Validators.required],
-      userName: ['', Validators.required],
-    });
+  form_fieldDataChanged(e: {
+    component: { option: (formData: string) => addUser };
+  }) {
+    this.user = e.component.option('formData');
+
+    if (this.user.userName === '') {
+      console.log('Este campo es requerido');
+      return;
+    }
+    if (this.user.name === '') {
+      console.log('Este campo es requerido');
+      return;
+    }
+
+    this.apiService.addUser(this.user).subscribe(() => {});
+    console.log(this.user);
+    this.getList();
   }
 
-  ngOnInit(): void {
+  buttonOptions: any = {
+    Text: 'Agregar',
+    type: 'success',
+    useSubmitBehavior: true,
+  };
+
+  getList() {
     this.apiService.getUsers().subscribe((data: any[]) => {
-      // this.users = users;
       this.dataSource = data;
       console.log(data);
     });
   }
 
-  addProduct() {
-    console.log(this.addProduct);
+  constructor(private apiService: ApiService) {
+    this.user = {
+      name: '',
+      userName: '',
+    };
+  }
+  //Consume el api.services.ts para darnos los datos de getArea
+  ngOnInit(): void {
+    this.getList();
   }
 
   onRowUpdating(event: any) {
@@ -71,58 +94,13 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  submitButtonOptions = {
-    text: 'Submit the Form',
-    useSubmitBehavior: true,
-  };
-
-  handleSubmit = (e: any) => {
-    console.log(this.addUserForm);
-    if (this.addUserForm.valid) {
-      console.log(this.addUserForm);
-
-      const newUserName: userName = {
-        name: this.addUserForm.value.name,
-        UserName: this.addUserForm.value.userName,
-      };
-      console.log(this.addUserForm);
-
-      console.log(newUserName);
-    }
-
+  //Agregar Usuarios
+  handleSubmit = function (e: { preventDefault: () => void }) {
+    console.log('Hace el submit');
     e.preventDefault();
+    //this.updateProduct(this.id, product).subscribe(() => {
+
+    //  }
+    //)
   };
-
-  //Agregando nuevos usuarios
-  addUser() {
-    // Verifica si el formulario es válido antes de intentar agregar el usuario
-    if (this.addUserForm.valid) {
-      console.log(this.addUserForm.value.name);
-
-      console.log(this.addUserForm.value.userName);
-
-      const newUserName: userName = {
-        name: this.addUserForm.value.name,
-        UserName: this.addUserForm.value.userName,
-      };
-      console.log(this.addUserForm);
-
-      console.log(newUserName);
-      const newUser = this.addUserForm.value;
-      this.apiService.addUser(newUser).subscribe((response) => {
-        if (response.idUser) {
-          console.log('Se ha agregado un nuevo usuario correctamente');
-          // Recargar la lista de usuarios después de agregar uno nuevo
-          this.apiService.getUsers().subscribe((data: any[]) => {
-            this.dataSource = data;
-          });
-
-          // Restablecer el formulario después de agregar el usuario
-          this.addUserForm.reset();
-        } else {
-          // Manejar errores
-        }
-      });
-    }
-  }
 }

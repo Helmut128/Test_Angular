@@ -20,3 +20,24 @@
   <dxo-editing [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
   </dxo-editing>
 </dx-data-grid>
+
+<br />
+
+<form (submit)="handleSubmit($event)">
+  <dx-form
+    id="form"
+    (onFieldDataChanged)="form_fieldDataChanged($event)"
+    [formData]="area"
+    [readOnly]="false"
+  >
+    <dxi-item itemType="group" caption="Formulario">
+      <dxi-item dataField="name"> </dxi-item>
+    </dxi-item>
+    <dxi-item
+      itemType="button"
+      horizontalAlignment="left"
+      [buttonOptions]="buttonOptions"
+    >
+    </dxi-item>
+  </dx-form>
+</form>

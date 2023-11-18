@@ -26,17 +26,24 @@
   ></dxo-editing>
 </dx-data-grid>
 
-<h2>AGREGAR USUARIOS</h2>
+<br />
+
 <form (submit)="handleSubmit($event)">
-  <dx-form [formData]="addUserForm" [colCount]="2" [labelLocation]="'top'">
-    <dxi-item dataField="name">
-      <dx-text-box formControlName="name"></dx-text-box>
+  <dx-form
+    id="form"
+    (onFieldDataChanged)="form_fieldDataChanged($event)"
+    [formData]="users"
+    [readOnly]="false"
+  >
+    <dxi-item itemType="group" caption="Formulario">
+      <dxi-item dataField="name"> </dxi-item>
+      <dxi-item dataField="UserName"> </dxi-item>
     </dxi-item>
-    <dxi-item dataField="userName">
-      <dx-text-box formControlName="userName"></dx-text-box>
+    <dxi-item
+      itemType="button"
+      horizontalAlignment="left"
+      [buttonOptions]="buttonOptions"
+    >
     </dxi-item>
   </dx-form>
-  <!-- Botón de Envío del Formulario -->
-
-  <dx-button type="submit" text="Submit" [useSubmitBehavior]="true"></dx-button>
 </form>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { language } from '../interface/languague';
+import { addLanguage } from '../interface/addLanguague';
 
 @Component({
   selector: 'app-language-list',
@@ -10,7 +11,34 @@ import { language } from '../interface/languague';
 export class LanguageListComponent implements OnInit {
   dataSource: any;
 
-  constructor(private apiService: ApiService) {}
+  language: addLanguage;
+
+  form_fieldDataChanged(e: {
+    component: { option: (formData: string) => addLanguage };
+  }) {
+    this.language = e.component.option('formData');
+    this.apiService.addLanguage(this.language).subscribe(() => {});
+    console.log(this.language);
+
+    this.apiService.getLanguages().subscribe((data: any[]) => {
+      // this.users = users;
+      this.dataSource = data;
+      console.log(data);
+    });
+  }
+
+  buttonOptions: any = {
+    Text: 'Agregar',
+    type: 'success',
+    useSubmitBehavior: true,
+  };
+
+  constructor(private apiService: ApiService) {
+    this.language = {
+      name: '',
+      code: '',
+    };
+  }
 
   ngOnInit(): void {
     this.apiService.getLanguages().subscribe((data: any[]) => {
@@ -59,4 +87,14 @@ export class LanguageListComponent implements OnInit {
       }
     });
   }
+
+  //Agregar languague
+  handleSubmit = function (e: { preventDefault: () => void }) {
+    console.log('Hace el submit');
+    e.preventDefault();
+    //this.updateProduct(this.id, product).subscribe(() => {
+
+    //  }
+    //)
+  };
 }
